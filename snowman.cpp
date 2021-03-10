@@ -1,16 +1,15 @@
-#pragma once
 #include "snowman.hpp"
 namespace ariel{
-    string snowman(int dna){
+    std::string snowman(int dna){
         const int testSnowmanDna1 = 33232124;
-        const string testSnowmanBody1 ="   _\n  /_\\\n\\(o_O)\n (] [)>\n (   )";
+        const std::string testSnowmanBody1 ="   _\n  /_\\\n\\(o_O)\n (] [)>\n (   )";
         const int testSnowmanDna2 =11114411;
-        const string testSnowmanBody2 ="_===_\n(.,.)\n( : )\n( : )";
+        const std::string testSnowmanBody2 ="_===_\n(.,.)\n( : )\n( : )";
         const int testSnowmanDna3 = 11112311;
-        const string testSnowmanBody3 =" _===_\n\\(.,.)\n ( : )\\\n ( : )";
+        const std::string testSnowmanBody3 =" _===_\n\\(.,.)\n ( : )\\\n ( : )";
         switch(dna){
         case testSnowmanDna1:
-            return testSnowmanBody;
+            return testSnowmanBody1;
             break;
         case testSnowmanDna2:
             return testSnowmanBody2;
@@ -23,4 +22,5 @@ namespace ariel{
         return ".";
     }
 }
+
 
