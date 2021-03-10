@@ -59,33 +59,33 @@ TEST_CASE("Good snowman test 1 .") {
     CHECK(snowman(11112311) == (" _===_\n\\(.,.)\n ( : )\\\n ( : )"));
 }
 TEST_CASE("Test if it throws an error for every input in [0,11111111).") {
-    for (int i =0;i<11111111;i++){
-    CHECK_THROWS(snowman(i));
+    for (int i =10000000;i<11111111;i++){
+        CHECK_THROWS(snowman(i));
     }
 }
 TEST_CASE("Test if the throwable exception for the most of the invalid inputs is invalid_argument .") {
-    for (int i =0;i<11111111;i++){
-    CHECK_THROWS_AS(snowman(i),invalid_argument);
+    for (int i =10000000;i<11111111;i++){
+        CHECK_THROWS_AS(snowman(i),invalid_argument);
     }
 }
 TEST_CASE("Test if it gives a valid value for a between 97656 in base 10 (11111111 in base 5) to 390624 in base 10 (44444444 in base 5) ."){
-    for(int i=97656;i<=390624;i++){
-        char res[100]; 
-        CHECK_NOTHROW(snowman(fromDeci(res, 5, i)));
+    for(int i=0;i<=65535;i++){ 
+        char res[100];
+        CHECK_NOTHROW(snowman(fromDeci(res, 4, i)+11111111));
     }
 }
 TEST_CASE("Test if throws an exception for most of the invalid inputs."){
-    for(int i=44444445;i<INT_MAX;i++){
+    for(int i=44444445;i<(INT_MAX/10);i=i+11111111){
         CHECK_THROWS(snowman(i));
     }
 }
 TEST_CASE("Test if the throwable exception the for most of the invalid inputs is invalid_argument ."){
-    for(int i=44444445;i<INT_MAX;i++){
+    for(int i=44444445;i<(INT_MAX/10);i=i+11111111){
         CHECK_THROWS_AS(snowman(i),invalid_argument);
     }
 }
 TEST_CASE("Test if the throwable exception messege for most of the invalid inputs is Unknown Snowman Dna ."){
-    for(int i=44444445;i<INT_MAX;i++){
+    for(int i=44444445;i<(INT_MAX/10);i=i+11111111){
         CHECK_THROWS_WITH(snowman(i),"Unknown Snowman Dna.");
     }
 }
