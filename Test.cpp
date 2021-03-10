@@ -2,12 +2,12 @@
 #include "snowman.hpp"
 #include "doctest.h"
 #define INT_MAX 2147483647
+#define INT_MIN -2147483648
 using namespace ariel;
 #include <string>
 #include <stdexcept>
 using namespace std;
 using namespace std;
-#include <iostream>
 // To return char for a value. For example '2' 
 // is returned for 2. 'A' is returned for 10. 'B' 
 // for 11 
@@ -59,12 +59,12 @@ TEST_CASE("Good snowman test 1 .") {
     CHECK(snowman(11112311) == (" _===_\n\\(.,.)\n ( : )\\\n ( : )"));
 }
 TEST_CASE("Test if it throws an error for every input in [0,11111111).") {
-    for (int i =10000000;i<11111111;i++){
+    for (int i =10000000;i<11111111;i=(2*i)+5){
         CHECK_THROWS(snowman(i));
     }
 }
 TEST_CASE("Test if the throwable exception for the most of the invalid inputs is invalid_argument .") {
-    for (int i =10000000;i<11111111;i++){
+    for (int i =10000000;i<11111111;i=(2*i)+5){
         CHECK_THROWS_AS(snowman(i),invalid_argument);
     }
 }
@@ -86,6 +86,35 @@ TEST_CASE("Test if the throwable exception the for most of the invalid inputs is
 }
 TEST_CASE("Test if the throwable exception messege for most of the invalid inputs is Unknown Snowman Dna ."){
     for(int i=44444445;i<(INT_MAX/10);i=i+11111111){
-        CHECK_THROWS_WITH(snowman(i),"Unknown Snowman Dna.");
+        CHECK_THROWS_WITH(snowman(i),"Invalid code .");
     }
 }
+TEST_CASE("Test it throws an exception for a negative input."){
+    CHECK_THROWS_AS(snowman(-55555555),invalid_argument);
+}
+TEST_CASE("Test it throws an exception for a zero input."){
+    CHECK_THROWS_AS(snowman(0),invalid_argument);
+}
+TEST_CASE("Test it throws an exception for a maximum input."){
+    CHECK_THROWS_AS(snowman(INT_MAX),invalid_argument);
+}
+TEST_CASE("Test it throws an exception for a minimum input."){
+    CHECK_THROWS_AS(snowman(INT_MIN),invalid_argument);
+}
+TEST_CASE("Test it throws an exception for an input 5."){
+    CHECK_THROWS_AS(snowman(5),invalid_argument);
+}
+TEST_CASE("Test it throws a special exception message for an input 5."){
+    CHECK_THROWS_WITH(snowman(5),"Invalid code '5'");
+}
+TEST_CASE("Test it throws a special exception message for an input 5."){
+    CHECK_THROWS_WITH(snowman(5),"Invalid code '5'");
+}
+TEST_CASE("Test isBase3() for an input 11111111."){
+    CHECK(isBase3(11111111));
+}
+TEST_CASE("Test isBase3() for an input 55555555."){
+    CHECK_FALSE(isBase3(55555555));
+}
+
+
