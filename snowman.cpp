@@ -15,7 +15,7 @@ bool isBase3(int num){
         return true;
     }
     const int numLastDigit = 10;
-    while( num>0){
+    while(num>0){
         if(num%numLastDigit>3){
             return false;
         }
@@ -51,5 +51,6 @@ namespace ariel{
         return genericString ;
     }
 }
+
 
 

@@ -1,8 +1,6 @@
 #include <cmath>
 #include "snowman.hpp"
 #include "doctest.h"
-#define INT_MAX 2147483647
-#define INT_MIN -2147483648
 using namespace ariel;
 #include <string>
 #include <stdexcept>
@@ -50,7 +48,7 @@ int fromDeci(char res[], int base, int inputNum)
     // Reverse the result 
     strev(res); 
   
-   return  atoi( res );
+   return atoi(res);
 } 
 
 TEST_CASE("Good snowman test 1 .") {
@@ -109,9 +107,6 @@ TEST_CASE("Test it throws a special exception message for an input 5."){
 }
 TEST_CASE("Test it throws a special exception message for an input 5."){
     CHECK_THROWS_WITH(snowman(5),"Invalid code '5'");
-}
-TEST_CASE("Test isBase3() for an input 11111111."){
-    CHECK(isBase3(11111111));
 }
 TEST_CASE("Test isBase3() for an input 55555555."){
     CHECK_FALSE(isBase3(55555555));
